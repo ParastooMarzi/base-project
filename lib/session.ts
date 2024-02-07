@@ -11,6 +11,12 @@ import { JWT } from "next-auth/jwt";
 import { createUser, getUser } from "./actions";
 import { SessionInterface, UserProfile } from "@/common.types";
 
+const githubClientId = process.env.GITHUB_ID || ''; // Provide a default value if undefined
+
+// Check if process.env.GITHUB_SECRET is defined before using it
+const githubClientSecret = process.env.GITHUB_SECRET || ''; // Provide a default value if undefined
+
+
 export const authOptions: NextAuthOptions = {
   providers: [
     //GoogleProvider({
@@ -18,8 +24,8 @@ export const authOptions: NextAuthOptions = {
       //clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     //}),
     GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientId: githubClientId,
+      clientSecret: githubClientSecret,
     }),
 
 
